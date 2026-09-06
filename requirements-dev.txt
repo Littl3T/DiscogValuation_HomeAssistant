@@ -1,2 +1,3 @@
-requests>=2.31
-python-dotenv>=1.0
+# The tests need nothing but pytest: valuation.py and store.py have no
+# dependency on Home Assistant, and the rest is stubbed out.
+pytest>=8.0
