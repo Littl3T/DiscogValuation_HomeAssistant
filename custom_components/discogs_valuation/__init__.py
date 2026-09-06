@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
@@ -31,7 +32,16 @@ _LOGGER = logging.getLogger(__name__)
 
 PLATFORMS = [Platform.SENSOR]
 
-type ValuationConfigEntry = ConfigEntry[ValuationCoordinator]
+# Alias de l'entree de configuration typee.
+#
+# Ecrit sans la syntaxe `type X = ...` (PEP 695) qui exige Python 3.12 : sur
+# une instance Home Assistant plus ancienne c'est une SyntaxError au
+# chargement, et l'integration disparait sans message. De meme, ConfigEntry
+# n'est generique qu'a partir de HA 2024.6, d'ou le garde TYPE_CHECKING.
+if TYPE_CHECKING:
+    ValuationConfigEntry = ConfigEntry[ValuationCoordinator]
+else:
+    ValuationConfigEntry = ConfigEntry
 
 
 async def async_setup_entry(
