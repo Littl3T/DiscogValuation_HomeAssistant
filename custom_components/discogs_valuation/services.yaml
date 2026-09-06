@@ -1,0 +1,85 @@
+refresh:
+  name: Refresh valuation
+  description: >-
+    Triggers a full snapshot immediately, without waiting for the configured
+    interval. Cached prices are still used: fast, except on the very first run.
+
+get_history:
+  name: Valuation history
+  description: >-
+    Returns the valuation_history view: one row per snapshot, with the total,
+    the average, the item count and the change since the previous one.
+  fields:
+    limit:
+      name: Number of snapshots
+      description: Most recent first.
+      default: 50
+      selector:
+        number:
+          min: 1
+          max: 5000
+          mode: box
+
+get_items:
+  name: Per-record detail
+  description: >-
+    Returns the detail of the latest snapshot, one record per copy owned, with
+    condition, retained value, raw value and confidence score.
+  fields:
+    limit:
+      name: Number of records
+      default: 50
+      selector:
+        number:
+          min: 1
+          max: 5000
+          mode: box
+    order_by:
+      name: Sort by
+      default: value
+      selector:
+        select:
+          options:
+            - value
+            - value_raw
+            - confidence
+            - artist
+            - title
+            - year
+
+get_flagged:
+  name: Records to check
+  description: >-
+    Returns the copies whose valuation was corrected, whose confidence score is
+    low, or for which Discogs gives no price at all.
+
+get_movers:
+  name: Largest movers
+  description: >-
+    Compares the last two snapshots like-for-like and returns the copies whose
+    value moved the most.
+  fields:
+    limit:
+      name: Number of records
+      default: 20
+      selector:
+        number:
+          min: 1
+          max: 5000
+          mode: box
+
+purge:
+  name: Purge old detail
+  description: >-
+    Deletes the per-record detail of old snapshots while keeping the view's
+    aggregates. Without a purge, 1,500 records on a daily schedule produce
+    550k rows a year.
+  fields:
+    keep_detail_days:
+      name: Days of detail kept
+      default: 90
+      selector:
+        number:
+          min: 1
+          max: 3650
+          mode: box

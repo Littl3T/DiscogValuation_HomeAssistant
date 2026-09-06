@@ -1,0 +1,53 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Discogs Collection Valuation",
+        "description": "Create a personal token at https://www.discogs.com/settings/developers. Your username is detected automatically.",
+        "data": {
+          "token": "Discogs personal token",
+          "interval": "Valuation frequency",
+          "currency": "Valuation currency"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Discogs rejected the token.",
+      "cannot_connect": "Cannot reach the Discogs API."
+    },
+    "abort": {
+      "already_configured": "This Discogs account is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "interval": "Valuation frequency",
+          "currency": "Valuation currency"
+        }
+      }
+    }
+  },
+  "selector": {
+    "interval": {
+      "options": {
+        "1d": "Daily",
+        "1w": "Weekly",
+        "1m": "Monthly"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "total_value": {"name": "Collection value"},
+      "floor_total": {"name": "Market floor"},
+      "total_raw": {"name": "Raw value"},
+      "item_count": {"name": "Record count"},
+      "avg_value": {"name": "Average value"},
+      "delta_pct": {"name": "Change"},
+      "like_for_like_pct": {"name": "Like-for-like change"}
+    }
+  }
+}

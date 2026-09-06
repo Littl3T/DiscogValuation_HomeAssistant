@@ -1,0 +1,12 @@
+{
+  "domain": "discogs_valuation",
+  "name": "Discogs Collection Valuation",
+  "codeowners": ["@Littl3T"],
+  "config_flow": true,
+  "documentation": "https://github.com/Littl3T/DiscogValuation_HomeAssistant",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/Littl3T/DiscogValuation_HomeAssistant/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

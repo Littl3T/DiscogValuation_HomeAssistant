@@ -1,0 +1,25 @@
+# Secrets - NEVER commit
+.env
+*.token
+
+# Local data: contains collection data
+*.db
+*.sqlite3
+
+# Exploratory scripts, kept locally only
+spike/
+
+# Local tooling
+.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Editors
+.vscode/
+.idea/
