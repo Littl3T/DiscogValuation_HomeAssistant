@@ -1,0 +1,53 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Discogs Collection Valuation",
+        "description": "Cree un token personnel sur https://www.discogs.com/settings/developers. Ton nom d'utilisateur est deduit automatiquement.",
+        "data": {
+          "token": "Token personnel Discogs",
+          "interval": "Frequence de valorisation",
+          "currency": "Devise de valorisation"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Token refuse par Discogs.",
+      "cannot_connect": "Impossible de joindre l'API Discogs."
+    },
+    "abort": {
+      "already_configured": "Ce compte Discogs est deja configure."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "interval": "Frequence de valorisation",
+          "currency": "Devise de valorisation"
+        }
+      }
+    }
+  },
+  "selector": {
+    "interval": {
+      "options": {
+        "1d": "Chaque jour",
+        "1w": "Chaque semaine",
+        "1m": "Chaque mois"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "total_value": {"name": "Valeur de la collection"},
+      "floor_total": {"name": "Plancher marche"},
+      "total_raw": {"name": "Valeur brute"},
+      "item_count": {"name": "Nombre de disques"},
+      "avg_value": {"name": "Valeur moyenne"},
+      "delta_pct": {"name": "Evolution"},
+      "like_for_like_pct": {"name": "Evolution a perimetre constant"}
+    }
+  }
+}
