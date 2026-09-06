@@ -1,0 +1,86 @@
+refresh:
+  name: Rafraichir la valorisation
+  description: >-
+    Declenche immediatement un snapshot complet sans attendre l'intervalle
+    configure. Les prix en cache restent utilises : rapide sauf au premier
+    lancement.
+
+get_history:
+  name: Historique des valorisations
+  description: >-
+    Renvoie la vue valuation_history : une ligne par snapshot, avec total,
+    moyenne, nombre d'items et variation depuis le precedent.
+  fields:
+    limit:
+      name: Nombre de snapshots
+      description: Les plus recents d'abord.
+      default: 50
+      selector:
+        number:
+          min: 1
+          max: 5000
+          mode: box
+
+get_items:
+  name: Detail par disque
+  description: >-
+    Renvoie le detail du dernier snapshot, un enregistrement par exemplaire
+    possede, avec etat, valeur retenue, valeur brute et indice de confiance.
+  fields:
+    limit:
+      name: Nombre de disques
+      default: 50
+      selector:
+        number:
+          min: 1
+          max: 5000
+          mode: box
+    order_by:
+      name: Tri
+      default: value
+      selector:
+        select:
+          options:
+            - value
+            - value_raw
+            - confidence
+            - artist
+            - title
+            - year
+
+get_flagged:
+  name: Disques a verifier
+  description: >-
+    Renvoie les exemplaires dont la valorisation a ete corrigee, dont l'indice
+    de confiance est faible, ou pour lesquels Discogs ne donne aucun prix.
+
+get_movers:
+  name: Plus fortes variations
+  description: >-
+    Compare les deux derniers snapshots a perimetre constant et renvoie les
+    exemplaires dont la valeur a le plus bouge.
+  fields:
+    limit:
+      name: Nombre de disques
+      default: 20
+      selector:
+        number:
+          min: 1
+          max: 5000
+          mode: box
+
+purge:
+  name: Purger le detail ancien
+  description: >-
+    Supprime le detail par disque des snapshots anciens en conservant les
+    agregats de la vue. Sans purge, 1500 disques en quotidien produisent
+    550k lignes par an.
+  fields:
+    keep_detail_days:
+      name: Jours de detail conserves
+      default: 90
+      selector:
+        number:
+          min: 1
+          max: 3650
+          mode: box
