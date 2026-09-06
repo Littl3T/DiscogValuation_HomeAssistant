@@ -1,0 +1,23 @@
+# Secrets — ne JAMAIS committer
+.env
+*.token
+
+# Sorties du spike : contiennent les donnees de la collection
+spike/out/
+*.db
+*.sqlite3
+
+# Outillage local
+.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Editeurs
+.vscode/
+.idea/
